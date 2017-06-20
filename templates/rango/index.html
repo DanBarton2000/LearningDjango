@@ -8,9 +8,19 @@
     </head>
 
     <body>
-        <h1>Rango says...</h1>
-        hello world! <strong>{{ boldmessage }}</strong><br/>
+        <h1>Rango says hello world!</h1>
+        <strong>{{ boldmessage }}</strong><br/>
         <a href="/rango/about/"></a><br />
         <img src="{% static 'images/t34.jpg' %}" alt="Picture of T34" /> <!-- New line -->
+        <img src="{% static 'images/T34-76_4.jpg' %}" alt="Picture of T34" />
+        {% if categories %}
+            <ul>
+                {% for category in categories %}
+                <li>{{ category.name }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>There are no categories present.</strong>
+        {% endif %}
     </body>
 </html>
