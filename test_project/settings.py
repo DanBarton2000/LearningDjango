@@ -10,7 +10,6 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-from django.db import models
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -74,21 +73,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
-class Category(models.Model):
-    name = models.CharField(max_length=128, unique=True)
-
-    def __unicode__(self):
-        return self.name
-
-class Page(models.Model):
-    category = models.ForeignKey(Category)
-    title = models.CharField(max_length=128)
-    url = models.URLField()
-    views = models.IntegerField(default=0)
-
-    def __unicode__(self):      #For Python 2, use __str__ on Python 3
-        return self.title
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
