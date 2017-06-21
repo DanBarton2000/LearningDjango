@@ -55,7 +55,9 @@ def add_category(request):
             form.save(commit=True)
             return index(request)
         else:
-            print form.errors
+            pass
+            # TODO: Reimplement below code and remove pass above
+            # print form.errors
     else:
         form = CategoryForm()
 
@@ -78,7 +80,8 @@ def add_page(request, category_name_slug):
                 page.save()
                 return category(request, category_name_slug)
         else:
-            print form.errors
+            pass
+            # print form.errors
     else:
         form = PageForm()
 
