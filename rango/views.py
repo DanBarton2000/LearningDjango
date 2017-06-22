@@ -62,12 +62,12 @@ def add_category(request):
 
     return render(request, 'rango/add_category.html', {'form': form})
 
-
 def add_page(request, category_name_slug):
+
     try:
         cat = Category.objects.get(slug=category_name_slug)
     except Category.DoesNotExist:
-        cat = None
+                cat = None
 
     if request.method == 'POST':
         form = PageForm(request.POST)
@@ -77,13 +77,14 @@ def add_page(request, category_name_slug):
                 page.category = cat
                 page.views = 0
                 page.save()
+                # probably better to use a redirect here.
                 return category(request, category_name_slug)
         else:
             print form.errors
     else:
         form = PageForm()
 
-    context_dict = {'form':form, 'category':cat}
+    context_dict = {'form':form, 'category': cat}
 
     return render(request, 'rango/add_page.html', context_dict)
 
@@ -143,7 +144,7 @@ def user_login(request):
 
 @login_required
 def restricted(request):
-    return HttpResponse("Since you are logged in, you can see this text!")
+    return render(request, 'rango/restricted.html')
 
 @login_required
 def user_logout(request):
