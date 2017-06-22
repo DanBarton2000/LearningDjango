@@ -3,6 +3,12 @@
 {% block title %}{{ Index }}{% endblock %}
 
 {% block body_block %}
+        {% if user.is_authenticated %}
+            <strong>Hello there, {{ user.username }}!</strong>
+        {% else %}
+            <strong>Hello stranger!</strong>
+        {% endif %}
+
         {% if categories %}
             <ul>
                 {% for category in categories %}
