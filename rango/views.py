@@ -1,10 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from rango.models import Category
-from rango.models import Page
-from rango.forms import CategoryForm
-from rango.forms import PageForm
-from rango.forms import UserForm, UserProfileForm
+from rango.models import Category, Page
+from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
@@ -59,8 +56,7 @@ def add_category(request):
             return index(request)
         else:
             pass
-            # TODO: Reimplement below code and remove pass above
-            # print form.errors
+            print form.errors
     else:
         form = CategoryForm()
 
@@ -83,8 +79,7 @@ def add_page(request, category_name_slug):
                 page.save()
                 return category(request, category_name_slug)
         else:
-            pass
-            # print form.errors
+            print form.errors
     else:
         form = PageForm()
 
@@ -140,6 +135,7 @@ def user_login(request):
                 return HttpResponse('Your Rango account is disabled')
         else:
             print("Invalid login details: {0}, {1}".format(username, password))
+            return HttpResponse('Invalid login details supplied')
 
     else:
         return render(request, 'rango/login.html', {})
