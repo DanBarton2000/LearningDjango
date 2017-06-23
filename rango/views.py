@@ -8,7 +8,11 @@ from datetime import datetime
 
 
 def about(request):
-    return render(request, 'rango/about.html')
+    if request.session.get('visits'):
+        count = request.session.get('visits')
+    else:
+        count = 0
+    return render(request, 'rango/about.html', {'visits': count})
 
 
 def index(request):

@@ -25,8 +25,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_URL = '/rango/login/'
 
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+
 PASSWORD_HASHERS = (
-    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.apyuth.hashers.PBKDF2PasswordHasher',
     'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
 )
 
