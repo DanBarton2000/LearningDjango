@@ -3,6 +3,7 @@
 {% block title %}{{ Index }}{% endblock %}
 
 {% block body_block %}
+         <p>Visits: {{ visits }}</p>
         {% if user.is_authenticated %}
             <strong>Hello there, {{ user.username }}!</strong>
         {% else %}
@@ -12,7 +13,6 @@
         {% if categories %}
             <ul>
                 {% for category in categories %}
-                <!-- Following line changed to add an HTML hyperlink -->
                 <li><a href="{% url 'category'  category.slug %}">{{ category.name }}</a></li>
                 {% endfor %}
             </ul>
