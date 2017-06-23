@@ -50,7 +50,7 @@ def index(request):
     return response
 
 def category(request, category_name_slug):
-
+    print "Category_name_slug: " + category_name_slug
     # Create a context dictionary which we can pass to the template rendering engine.
     context_dict = {}
 
@@ -60,6 +60,7 @@ def category(request, category_name_slug):
         # So the .get() method returns one model instance or raises an exception.
         category = Category.objects.get(slug=category_name_slug)
         context_dict['category_name'] = category.name
+        context_dict['category_name_slug'] = category_name_slug
 
         # Retrieve all of the associated pages.
         # Note that filter returns >= 1 model instance.
@@ -110,13 +111,14 @@ def add_page(request, category_name_slug):
                 page.views = 0
                 page.save()
                 # probably better to use a redirect here.
-                return category(request, category_name_slug)
+                return HttpResponseRedirect('/rango/')
+                #return category(request, category_name_slug)
         else:
             print form.errors
     else:
         form = PageForm()
 
-    context_dict = {'form':form, 'category': cat}
+    context_dict = {'form': form, 'category': cat, 'category_name_slug': category_name_slug}
 
     return render(request, 'rango/add_page.html', context_dict)
 
