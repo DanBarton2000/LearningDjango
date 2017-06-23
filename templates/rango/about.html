@@ -1,8 +1,17 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ Index }}{% endblock %}
+{% load staticfiles %}
+
+{% block title %}About{% endblock %}
 
 {% block body_block %}
-    <h1>The about page.</h1>
-    <strong>You have visited this website {{ visits }} times!</strong>
+    <div class="page-header">
+                <h1>About</h1>
+                <strong>You have visited this website {{ visits }} times!</strong>
+            </div>
+            <div>
+            <p></strong></p>
+
+            <img  width="1200" height="800" src="{% static 'images/T34-76_4.jpg' %}" alt="Picture of T34" />
+            </div>
 {% endblock %}
